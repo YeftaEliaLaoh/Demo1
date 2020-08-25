@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo Web Application</title>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>-->
+
+    <link rel="stylesheet" href="webjars/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.4.1/js/bootstrap.js"></script>
+    <script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+
+    <style>
+
+input {
+  margin: 5px;
+}
+form {
+  margin: 70px;
+}
+.header {
+  margin: 7px;
+    background-color: #eeeeee;
+}
+
+.footer {
+    background-color: #6f4a8e;
+}
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <form id="form_register" action="/login" method="post">
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group '>
+                            <h1>Registration</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group phone'>
+                            <input id='phone' name='phone' type='text' class="form-control"
+                                   placeholder="Mobile Number"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-phone"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group firstName'>
+                            <input name='firstName' id='firstName' type='text' class="form-control"
+                                   placeholder="First Name"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group lastName'>
+                            <input name='lastName' id='lastName' type='text' class="form-control"
+                                   placeholder="Last Name"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <p>Date of Birth</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-4'>
+                    <div class="form-group">
+                        <div class='input-group date'>
+                            <input name='datetimepicker2' id='datetimepicker2' type='text' class="form-control"
+                                   placeholder="Month"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+           $(function () {
+                $('#datetimepicker2').datepicker( {
+                format: "mm",
+                changeYear: false,
+                changeMonth: true,
+                startView: "months",
+                minViewMode: "months"
+                });
+            });
+
+
+                </script>
+                <div class='col-sm-4'>
+                    <div class="form-group">
+                        <div class='input-group date'>
+                            <input name='datetimepicker3' id='datetimepicker3' type='text' class="form-control"
+                                   placeholder="Date"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+           $(function () {
+                $('#datetimepicker3').datepicker( {
+                format: "dd",
+                startView: "days",
+                minViewMode: "days"
+                });
+            });
+
+
+                </script>
+                <div class='col-sm-4'>
+                    <div class="form-group">
+                        <div class='input-group date'>
+                            <input name='datetimepicker1' id='datetimepicker1' type='text' class="form-control"
+                                   placeholder="Year"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datepicker( {
+                format: "yyyy",
+                viewMode: "years",
+                minViewMode: "years"
+                });
+            });
+
+
+                </script>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                               value="male">
+                        <label class="form-check-label" for="inlineRadio1">
+                            Male </label>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                               value="female">
+                        <label class="form-check-label" for="inlineRadio2">
+                            Female </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group email'>
+                            <input name='email' id='email' type='text' class="form-control" placeholder="Email"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" id="register" value="Register">
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+            $(function () {
+              var phoneNumber = /.*[0-9]+.*/;
+              var email =/\S+@\S+\.\S+/
+                $('#register').click(function(){
+                 if($('#phone').val()==""||!(phoneNumber).test($('#phone').val()))
+                 {
+               alert("Please enter valid indonesian phone number");
+                  return false;
+                 }
+                 if($('#firstName').val()=="")
+                 {
+               alert("Please enter valid first name");
+                 return false;
+                 }
+                 if($('#lastName').val()=="")
+                 {
+               alert("Please enter valid last name");
+                 return false;
+                 }
+                /* if($('#datetimepicker2').val()=="")
+                 {
+               alert("Please enter valid month");
+                  return false;
+                 }
+                 if($('#datetimepicker3').val()=="")
+                 {
+               alert("Please enter valid date");
+                  return false;
+                 }
+                 if($('#datetimepicker1').val()=="")
+                 {
+               alert("Please enter valid year");
+                                return false;
+                 }*/
+                  if($('#email').val()==""||!(email).test($('#email').val()))
+                 {
+               alert("Please enter valid email");
+                 return false;
+                 }
+                 });
+             });
+
+             </script>
+        </form>
+    </div>
+
+    <div class="footer">
+        <div class="row">
+            <div class='col-sm-12'>
+                <h2 style="text-align:center; color:white;">Footer</h2>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
