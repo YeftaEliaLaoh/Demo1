@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Demo Web Application</title>
 
@@ -16,6 +16,25 @@
     <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="webjars/bootstrap/3.4.1/js/bootstrap.js"></script>
     <script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+    <script>
+    $(document).ready(function(){
+        if($('#isRegister').val()==0)
+        {
+        document.getElementById("phone").disabled = true;
+        document.getElementById("firstName").disabled = true;
+        document.getElementById("lastName").disabled = true;
+        document.getElementById("datetimepicker2").disabled = true;
+        document.getElementById("datetimepicker3").disabled = true;
+        document.getElementById("datetimepicker1").disabled = true;
+        document.getElementById("inlineRadio1").disabled = true;
+        document.getElementById("inlineRadio2").disabled = true;
+        document.getElementById("email").disabled = true;
+        document.getElementById("register").disabled = true;
+        document.getElementById("footer").style.display = "none";
+        document.getElementById("login").style.display = "block";
+        }
+    });
+    </script>
 
     <style>
 
@@ -33,12 +52,11 @@ form {
 .footer {
     background-color: #6f4a8e;
 }
-
-
     </style>
 </head>
 <body>
 <div class="container">
+    <input id='isRegister' name='isRegister' type='hidden' th:value="${isRegister}"/>
     <div class="header">
         <form id="form_register" action="/login" method="post">
             <div class="row">
@@ -116,8 +134,6 @@ form {
                 minViewMode: "months"
                 });
             });
-
-
                 </script>
                 <div class='col-sm-4'>
                     <div class="form-group">
@@ -138,8 +154,6 @@ form {
                 minViewMode: "days"
                 });
             });
-
-
                 </script>
                 <div class='col-sm-4'>
                     <div class="form-group">
@@ -160,8 +174,6 @@ form {
                 minViewMode: "years"
                 });
             });
-
-
                 </script>
             </div>
             <div class="row">
@@ -239,17 +251,28 @@ form {
                  }
                  });
              });
-
-             </script>
+            </script>
         </form>
     </div>
 
     <div class="footer">
-        <div class="row">
-            <div class='col-sm-12'>
-                <h2 style="text-align:center; color:white;">Footer</h2>
+        <form>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <h2 id="footer" style="text-align:center; color:white;">Footer</h2>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" id="login" value="Login"
+                               style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 </body>
