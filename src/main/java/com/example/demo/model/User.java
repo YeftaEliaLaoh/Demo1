@@ -9,6 +9,7 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     String phone;
     String firstName;
     String lastName;
@@ -17,6 +18,7 @@ public class User
     String datetimepicker1;
     String inlineRadio1;
     String inlineRadio2;
+    @Column(unique = true)
     String email;
 
     public Long getId()

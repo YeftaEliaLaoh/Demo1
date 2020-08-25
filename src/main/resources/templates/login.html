@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo Web Application</title>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>-->
+
+    <link rel="stylesheet" href="webjars/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.4.1/js/bootstrap.js"></script>
+    <script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+    <script>
+     $(document).ready(function(){
+        if($('#isSuccess').val()!="")
+        {
+            if($('#isSuccess').val()==1)
+            {
+            document.getElementById("phone").disabled = true;
+            document.getElementById("email").disabled = true;
+            alert("Login Success");
+            }
+            else
+            {
+            alert("Login not Success");
+            }
+        }
+      });
+    </script>
+
+    <style>
+
+input {
+  margin: 5px;
+}
+form {
+  margin: 70px;
+}
+.header {
+  margin: 7px;
+    background-color: #eeeeee;
+}
+
+.footer {
+    background-color: #6f4a8e;
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <input id='isSuccess' name='isSuccess' type='hidden' th:value="${isSuccess}"/>
+    <div class="header">
+        <form id="form_login" method="post">
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group '>
+                            <h1>Login</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group phone'>
+                            <input id='phone' name='phone' type='text' class="form-control"
+                                   placeholder="Mobile Number"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-phone"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group email'>
+                            <input name='email' id='email' type='text' class="form-control" placeholder="Email"/>
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" id="register" value="Register">
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+            $(function () {
+              var phoneNumber = /.*[0-9]+.*/;
+              var email =/\S+@\S+\.\S+/
+                $('#register').click(function(){
+                     if($('#phone').val()==""||!(phoneNumber).test($('#phone').val()))
+                     {
+                      alert("Please enter valid indonesian phone number");
+                      return false;
+                     }
+                      if($('#email').val()==""||!(email).test($('#email').val()))
+                     {
+                     alert("Please enter valid email");
+                     return false;
+                     }
+                 });
+             });
+
+            </script>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

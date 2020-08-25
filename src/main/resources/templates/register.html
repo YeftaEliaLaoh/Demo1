@@ -18,7 +18,7 @@
     <script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
     <script>
     $(document).ready(function(){
-        if($('#isRegister').val()==0)
+        if($('#isRegister').val()==1)
         {
         document.getElementById("phone").disabled = true;
         document.getElementById("firstName").disabled = true;
@@ -32,6 +32,14 @@
         document.getElementById("register").disabled = true;
         document.getElementById("footer").style.display = "none";
         document.getElementById("login").style.display = "block";
+        }
+        if($('#error').val()==1)
+        {
+         alert("Phone is already available");
+        }
+        if($('#error').val()==2)
+        {
+         alert("Email is already available");
         }
     });
     </script>
@@ -57,8 +65,9 @@ form {
 <body>
 <div class="container">
     <input id='isRegister' name='isRegister' type='hidden' th:value="${isRegister}"/>
+    <input id='error' name='error' type='hidden' th:value="${error}"/>
     <div class="header">
-        <form id="form_register" action="/login" method="post">
+        <form id="form_register" method="post">
             <div class="row">
                 <div class='col-sm-12'>
                     <div class="form-group">
@@ -256,7 +265,7 @@ form {
     </div>
 
     <div class="footer">
-        <form>
+        <form id="form_login"  >
             <div class="row">
                 <div class='col-sm-12'>
                     <div class="form-group">
@@ -267,7 +276,8 @@ form {
             <div class="row">
                 <div class='col-sm-12'>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block" id="login" value="Login"
+                        <input type="button" class="btn btn-primary btn-block" id="login" value="Login"
+                               onclick="location.href='/login';"
                                style="display: none;">
                     </div>
                 </div>

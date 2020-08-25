@@ -5,7 +5,6 @@ import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +18,15 @@ public class TestController
     private UserService userService;
 
     @GetMapping("/register")
-    public String register( Model model )
+    public String getRegister( Model model )
     {
         model.addAttribute("isRegister", "0");
         return "register";
     }
 
-    @PostMapping("/login")
-    public String login( HttpServletRequest request, Model model )
+    @PostMapping("/register")
+    public String postRegister( HttpServletRequest request, Model model )
     {
-        model.addAttribute("isRegister", "1");
         try
         {
             String phone
@@ -58,23 +56,89 @@ public class TestController
             String email
                     = ServletRequestUtils.getStringParameter(
                     request, "email");
-
-            User user = new User();
-            user.setPhone(phone);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setDatetimepicker2(datetimepicker2);
-            user.setDatetimepicker3(datetimepicker3);
-            user.setDatetimepicker1(datetimepicker1);
-            user.setInlineRadio1(inlineRadio1);
-            user.setInlineRadio2(inlineRadio2);
-            user.setEmail(email);
-            userService.save(user);
+            if( userService.count() > 0 )
+            {
+                if( userService.existsByPhone(phone) )
+                {
+                    model.addAttribute("error", "1");
+                    model.addAttribute("isRegister", "0");
+                }
+                else if( userService.existsByEmail(email) )
+                {
+                    model.addAttribute("error", "2");
+                    model.addAttribute("isRegister", "0");
+                }
+                else
+                {
+                    User user = new User();
+                    user.setPhone(phone);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setDatetimepicker2(datetimepicker2);
+                    user.setDatetimepicker3(datetimepicker3);
+                    user.setDatetimepicker1(datetimepicker1);
+                    user.setInlineRadio1(inlineRadio1);
+                    user.setInlineRadio2(inlineRadio2);
+                    user.setEmail(email);
+                    userService.save(user);
+                    model.addAttribute("error", "0");
+                    model.addAttribute("isRegister", "1");
+                }
+            }
+            else
+            {
+                User user = new User();
+                user.setPhone(phone);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setDatetimepicker2(datetimepicker2);
+                user.setDatetimepicker3(datetimepicker3);
+                user.setDatetimepicker1(datetimepicker1);
+                user.setInlineRadio1(inlineRadio1);
+                user.setInlineRadio2(inlineRadio2);
+                user.setEmail(email);
+                userService.save(user);
+                model.addAttribute("error", "0");
+                model.addAttribute("isRegister", "1");
+            }
         }
         catch ( ServletRequestBindingException e )
         {
             e.printStackTrace();
         }
         return "register";
+    }
+
+    @GetMapping("/login")
+    public String getLogin( Model model )
+    {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String postLogin( HttpServletRequest request, Model model )
+    {
+        try
+        {
+            String phone
+                    = ServletRequestUtils.getStringParameter(
+                    request, "phone");
+            String email
+                    = ServletRequestUtils.getStringParameter(
+                    request, "email");
+            if( userService.existsByPhone(phone) && userService.existsByEmail(email) )
+            {
+                model.addAttribute("isSuccess", "1");
+            }
+            else
+            {
+                model.addAttribute("isSuccess", "0");
+            }
+        }
+        catch ( ServletRequestBindingException e )
+        {
+            e.printStackTrace();
+        }
+        return "login";
     }
 }
